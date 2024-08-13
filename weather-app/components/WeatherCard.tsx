@@ -1,18 +1,32 @@
-import React from 'react';
-import { WiDaySunny, WiCloudy, WiRain, WiSnow, WiDayThunderstorm, WiDust } from 'react-icons/wi';
+import React from "react";
+import {
+  WiDaySunny,
+  WiCloudy,
+  WiRain,
+  WiSnow,
+  WiDayThunderstorm,
+  WiDust,
+} from "react-icons/wi";
 
-const WeatherCard = ({ city, date, temperature, condition, hourlyForecast, dailyForecast }) => {
-  const getWeatherIcon = (condition, size = "text-4xl") => {
+const WeatherCard = ({
+  city,
+  date,
+  temperature,
+  condition,
+  hourlyForecast,
+  dailyForecast,
+}: any) => {
+  const getWeatherIcon = (condition: any, size = "text-4xl") => {
     switch (condition.toLowerCase()) {
-      case 'clear':
+      case "clear":
         return <WiDaySunny className={size} />;
-      case 'clouds':
+      case "clouds":
         return <WiCloudy className={size} />;
-      case 'rain':
+      case "rain":
         return <WiRain className={size} />;
-      case 'snow':
+      case "snow":
         return <WiSnow className={size} />;
-      case 'thunderstorm':
+      case "thunderstorm":
         return <WiDayThunderstorm className={size} />;
       default:
         return <WiDust className={size} />;
@@ -36,10 +50,12 @@ const WeatherCard = ({ city, date, temperature, condition, hourlyForecast, daily
         <div className="mb-6">
           <h3 className="text-xl font-semibold mb-2">Hourly Forecast</h3>
           <div className="flex justify-between">
-            {hourlyForecast.map((hour, index) => (
+            {hourlyForecast.map((hour: any, index: any) => (
               <div key={index} className="text-center">
                 <p className="text-sm">{hour.time}</p>
-                <div className="my-1">{getWeatherIcon(hour.condition, "text-2xl")}</div>
+                <div className="my-1">
+                  {getWeatherIcon(hour.condition, "text-2xl")}
+                </div>
                 <p className="text-sm font-semibold">{hour.temperature}°C</p>
               </div>
             ))}
@@ -49,11 +65,15 @@ const WeatherCard = ({ city, date, temperature, condition, hourlyForecast, daily
       <div className="border-t border-white border-opacity-20 p-6">
         <h3 className="text-xl font-semibold mb-2">5-Day Forecast</h3>
         <div className="grid grid-cols-5 gap-2">
-          {dailyForecast.map((day, index) => (
+          {dailyForecast.map((day: any, index: any) => (
             <div key={index} className="text-center">
               <p className="text-sm">{day.date}</p>
-              <div className="my-1">{getWeatherIcon(day.condition, "text-2xl")}</div>
-              <p className="text-xs">{day.tempMax}°/{day.tempMin}°</p>
+              <div className="my-1">
+                {getWeatherIcon(day.condition, "text-2xl")}
+              </div>
+              <p className="text-xs">
+                {day.tempMax}°/{day.tempMin}°
+              </p>
             </div>
           ))}
         </div>
